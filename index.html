@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matthew's Home Practice — Parent & Carer Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&family=DM+Sans:wght@400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #1A5C8A;
+    --navy-lt:#eef2f6;
+    --navy-md:#d0e3f0;
+    --green:  #1a6b3a;
+    --grn-lt: #e8f5ee;
+    --amber:  #7a5000;
+    --amb-lt: #fff8e6;
+    --amb-bd: #c8860a;
+    --gray:   #666;
+    --gry-lt: #f5f5f5;
+    --gry-bd: #ccc;
+    --text:   #111;
+    --muted:  #555;
+    --border: #dde3ea;
+    --page:   #f4f5f7;
+  }
+
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--text);
+    background: var(--page);
+    padding: 2.5rem 1rem 5rem;
+  }
+
+  /* ── Page shell ── */
+  .page {
+    max-width: 740px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  }
+
+  /* ── Header ── */
+  .hdr {
+    background: var(--navy);
+    color: #fff;
+    padding: 2.25rem 2.75rem 2rem;
+  }
+  .hdr-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.65;
+    margin-bottom: 0.5rem;
+  }
+  .hdr h1 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.15;
+    margin-bottom: 0.6rem;
+  }
+  .hdr-sub { font-size: 14px; opacity: 0.75; line-height: 1.5; }
+
+  /* ── Body ── */
+  .body { padding: 2.25rem 2.75rem 3rem; }
+
+  /* ── Intro ── */
+  .intro {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 15.5px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted);
+    line-height: 1.85;
+    border-left: 3px solid var(--navy-md);
+    padding-left: 1.1rem;
+    margin-bottom: 2.25rem;
+  }
+
+  /* ── Section ── */
+  .sec { margin-bottom: 2.25rem; }
+  .sec-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--navy);
+    border-bottom: 1.5px solid var(--navy-md);
+    padding-bottom: 7px;
+    margin-bottom: 1rem;
+  }
+
+  p.body-p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 0.9rem; }
+  p.body-p:last-child { margin-bottom: 0; }
+
+  /* ── Numbered steps ── */
+  .steps { list-style: none; display: flex; flex-direction: column; gap: 13px; }
+  .step { display: flex; gap: 14px; align-items: flex-start; }
+  .step-n {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    background: var(--navy);
+    color: #fff;
+    font-size: 12px; font-weight: 600;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+  }
+  .step-body { font-size: 14px; line-height: 1.7; color: var(--text); }
+  .step-body strong { font-weight: 600; }
+  .step-body .note { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* ── Callout boxes ── */
+  .box {
+    border-radius: 11px;
+    padding: 1rem 1.2rem;
+    margin: 0.9rem 0;
+    font-size: 13.5px;
+    line-height: 1.7;
+  }
+  .box-title {
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 6px;
+  }
+  .box-navy  { background: var(--navy-lt); border-left: 3px solid var(--navy); }
+  .box-navy  .box-title { color: var(--navy); }
+  .box-green { background: var(--grn-lt); border-left: 3px solid var(--green); }
+  .box-green .box-title { color: var(--green); }
+  .box-amber { background: var(--amb-lt); border-left: 3px solid var(--amb-bd); }
+  .box-amber .box-title { color: var(--amber); }
+
+  /* ── App UI replica elements ── */
+  /* Category buttons (matches .cat-btn / .cat-btn.active in app) */
+  .ui-cats {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin: 0.75rem 0;
+  }
+  .ui-cat {
+    padding: 9px 16px;
+    font-size: 13px; font-weight: 500;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    background: #fff;
+    color: #333;
+  }
+  .ui-cat.active {
+    background: var(--navy);
+    color: #fff;
+    border-color: var(--navy);
+  }
+  .ui-label { font-size: 11px; font-weight: 600; color: #999; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+
+  /* Phrase card (matches .phrase-card in app) */
+  .ui-phrase-wrap { margin: 0.75rem 0 0.4rem; }
+  .ui-phrase {
+    background: #fff;
+    border: 2.5px solid var(--navy);
+    border-radius: 16px;
+    padding: 1.3rem 1.5rem;
+    text-align: center;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+  .ui-hint { font-size: 12px; color: #999; text-align: center; margin-top: 5px; }
+
+  /* Mic button area */
+  .ui-mic-area {
+    background: var(--navy-lt);
+    border-radius: 14px;
+    padding: 1.1rem 1.4rem;
+    margin: 0.75rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .ui-mic-btn {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .ui-mic-btn svg { width: 24px; height: 24px; fill: #fff; }
+  .ui-mic-status { font-size: 14px; font-weight: 500; color: #333; }
+  .ui-mic-sub { font-size: 12px; color: #888; margin-top: 2px; }
+
+  /* Response rating buttons (matches .resp-btn variants) */
+  .ui-resp-row { display: flex; gap: 8px; margin: 0.75rem 0; flex-wrap: wrap; }
+  .ui-resp {
+    flex: 1; min-width: 110px;
+    padding: 13px 8px;
+    font-size: 13px; font-weight: 600;
+    border-radius: 12px;
+    border: 1.5px solid;
+    text-align: center;
+  }
+  .ui-got    { background: var(--grn-lt); color: var(--green); border-color: var(--green); }
+  .ui-partial{ background: var(--amb-lt); color: var(--amber); border-color: var(--amb-bd); }
+  .ui-noyet  { background: var(--gry-lt); color: var(--gray);  border-color: var(--gry-bd); }
+  .ui-selected { outline: 3px solid var(--navy); outline-offset: 2px; }
+
+  /* Done / report card */
+  .ui-report {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    padding: 1.25rem 1.4rem;
+    margin: 0.75rem 0;
+  }
+  .ui-report-title { font-size: 10.5px; font-weight: 600; color: #999; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.85rem; }
+  .ui-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 1rem; }
+  .ui-stat {
+    background: #f9f9f7;
+    border: 1px solid #eee;
+    border-radius: 11px;
+    padding: 0.8rem 0.5rem;
+    text-align: center;
+  }
+  .ui-stat-num { font-size: 30px; font-weight: 600; line-height: 1; margin-bottom: 3px; }
+  .ui-stat-got .ui-stat-num  { color: var(--green); }
+  .ui-stat-part .ui-stat-num { color: var(--amber); }
+  .ui-stat-noyet .ui-stat-num{ color: #888; }
+  .ui-stat-lbl { font-size: 10.5px; color: #888; }
+  .ui-phrase-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 7px 0; border-bottom: 1px solid #f0f0f0; font-size: 13px;
+  }
+  .ui-phrase-row:last-child { border-bottom: none; }
+  .ui-phrase-row-text { flex: 1; color: #111; }
+  .ui-phrase-row-att { font-size: 11px; color: #bbb; white-space: nowrap; }
+  .badge {
+    font-size: 10.5px; font-weight: 600;
+    padding: 3px 10px; border-radius: 99px; white-space: nowrap;
+  }
+  .badge-got   { background: var(--grn-lt); color: var(--green); }
+  .badge-part  { background: var(--amb-lt); color: var(--amber); }
+  .badge-noyet { background: var(--gry-lt); color: #888; }
+  .ui-summary-box {
+    background: var(--navy-lt);
+    border-radius: 11px;
+    padding: 0.9rem 1rem;
+    margin-top: 0.75rem;
+    font-size: 13px;
+    color: #333;
+    line-height: 1.7;
+    font-style: italic;
+  }
+  .ui-summary-lbl { font-size: 10.5px; font-weight: 600; color: var(--navy); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 5px; font-style: normal; }
+
+  /* Annotation arrows */
+  .annotated { position: relative; }
+  .annotation {
+    display: flex; align-items: flex-start; gap: 8px;
+    margin: 6px 0 0 4px;
+  }
+  .ann-arrow { color: var(--navy); font-size: 15px; margin-top: 1px; flex-shrink: 0; }
+  .ann-text { font-size: 12.5px; color: var(--muted); line-height: 1.55; }
+  .ann-text strong { color: var(--text); font-weight: 600; }
+
+  /* Screenshot annotation highlight */
+  .hl-border { border: 2.5px dashed var(--navy); border-radius: 13px; padding: 4px; position: relative; }
+  .hl-label {
+    position: absolute; top: -11px; left: 12px;
+    background: var(--navy); color: #fff;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 1px 8px; border-radius: 4px;
+  }
+
+  /* Override box */
+  .override-table { width: 100%; border-collapse: collapse; margin-top: 0.75rem; font-size: 13.5px; }
+  .override-table th {
+    background: var(--navy-lt);
+    color: var(--navy);
+    font-size: 10.5px; font-weight: 600;
+    letter-spacing: 0.07em; text-transform: uppercase;
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1.5px solid var(--navy-md);
+  }
+  .override-table td { padding: 9px 12px; border-bottom: 1px solid #eee; color: var(--muted); vertical-align: top; }
+  .override-table tr:last-child td { border-bottom: none; }
+
+  /* Checklist */
+  .checklist { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 0.75rem; }
+  .checklist li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13.5px; color: var(--text); line-height: 1.6;
+  }
+  .check-box {
+    flex-shrink: 0;
+    width: 20px; height: 20px;
+    border: 1.5px solid var(--border);
+    border-radius: 5px;
+    margin-top: 2px;
+  }
+
+  /* Screenshot grid */
+  .sc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 0.75rem; }
+  .sc-card {
+    background: var(--navy-lt);
+    border: 1px solid var(--navy-md);
+    border-radius: 11px;
+    padding: 0.85rem 1rem;
+  }
+  .sc-card-title { font-size: 10.5px; font-weight: 600; color: var(--navy); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 5px; }
+  .sc-card-body { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* Divider */
+  hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+  /* Footer */
+  .foot {
+    background: #f7f8fa;
+    border-top: 1px solid var(--border);
+    padding: 1rem 2.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #aaa;
+  }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { border: none; border-radius: 0; box-shadow: none; max-width: 100%; }
+    .body { padding: 1.5rem 2rem 2rem; }
+    .hdr { padding: 1.5rem 2rem; }
+    .foot { position: fixed; bottom: 0; width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-eyebrow">Home speech practice programme</div>
+  <h1>Parent &amp; carer guide<br>Matthew's practice app</h1>
+  <div class="hdr-sub">Please read this guide before running Matthew's first session. Keep it handy for reference.</div>
+</div>
+
+<div class="body">
+
+<p class="intro">This guide explains how Matthew's speech practice app works, what you need to do during each session, and how to record his progress so his speech therapist can track how he is going over time.</p>
+
+<!-- ── SECTION 1: HOW THE APP WORKS ── -->
+<div class="sec">
+  <div class="sec-title">1 &nbsp;How the app works — a quick overview</div>
+
+  <p class="body-p">When you open the app, Matthew will see a home screen with five practice categories. He selects one to begin.</p>
+
+  <div class="ui-label">Choose a category</div>
+  <div class="ui-cats">
+    <div class="ui-cat active">🍔 Food &amp; drink</div>
+    <div class="ui-cat">🏠 Everyday items</div>
+    <div class="ui-cat">👨‍👩‍👧 People</div>
+    <div class="ui-cat">🏊 Activities</div>
+    <div class="ui-cat">📍 Places</div>
+  </div>
+  <div class="annotation">
+    <div class="ann-arrow">↑</div>
+    <div class="ann-text">The highlighted (blue) button is the selected category. Matthew taps any category to start that set.</div>
+  </div>
+
+  <p class="body-p" style="margin-top:1rem;">Each category has 7 phrases. For each one, the app shows a question and the phrase Matthew needs to say aloud.</p>
+
+  <div class="ui-phrase-wrap">
+    <div class="ui-phrase">I want burger and chips</div>
+  </div>
+  <div class="ui-hint">Say this phrase out loud</div>
+  <div class="annotation">
+    <div class="ann-arrow">↑</div>
+    <div class="ann-text">This blue phrase card shows what Matthew should say. <strong>Do not read it aloud for him</strong> — let him attempt it first.</div>
+  </div>
+
+  <p class="body-p" style="margin-top:1rem;">After he speaks, the microphone automatically judges the response. You will see which rating it chose — and you can change it if needed (see Section 4).</p>
+
+  <div class="ui-resp-row">
+    <div class="ui-resp ui-got">✓ Got it</div>
+    <div class="ui-resp ui-partial">~ Nearly</div>
+    <div class="ui-resp ui-noyet">Keep going</div>
+  </div>
+  <div class="annotation">
+    <div class="ann-arrow">↑</div>
+    <div class="ann-text"><strong>Got it</strong> — Matthew said the phrase accurately. &nbsp;|&nbsp; <strong>Nearly</strong> — Close, not quite right. &nbsp;|&nbsp; <strong>Keep going</strong> — Still needs practice on this one.</div>
+  </div>
+
+  <div class="box box-navy" style="margin-top:1rem;">
+    <div class="box-title">Retry rounds</div>
+    After all 7 phrases, the app may offer a <strong>"Try again"</strong> screen for any phrases not yet rated <em>Got it</em>. Encourage Matthew to try the retry round — practising tricky phrases a second or third time is exactly what the programme is designed for. He can choose to skip it if he is tired.
+  </div>
+</div>
+
+<!-- ── SECTION 2: PRACTICE SCHEDULE ── -->
+<div class="sec">
+  <div class="sec-title">2 &nbsp;Practice schedule</div>
+
+  <ol class="steps">
+    <li class="step">
+      <div class="step-n">1</div>
+      <div class="step-body">
+        <strong>Practise at least 3 days per week.</strong> Aim to spread sessions out — for example Monday, Wednesday and Friday — so Matthew has time to rest between sessions. Even short, consistent sessions are more effective than one long one.
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-n">2</div>
+      <div class="step-body">
+        <strong>Go through all five categories every session.</strong> Each time Matthew practises, he needs to complete all five categories — Food &amp; drink, Everyday items, People, Activities, and Places — at least once. He can do them in any order.
+        <div class="note">If Matthew is having a difficult day and cannot manage all five, that is okay — but record (screenshot) every category he does complete, and note that the session was cut short.</div>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-n">3</div>
+      <div class="step-body">
+        <strong>Encourage the retry round.</strong> When the app offers to repeat the tricky phrases, try to encourage Matthew to have another go. This is one of the most useful parts of the practice.
+      </div>
+    </li>
+  </ol>
+</div>
+
+<!-- ── SECTION 3: RECORDING & SCREENSHOTS ── -->
+<div class="sec">
+  <div class="sec-title">3 &nbsp;What to record — screenshots every session</div>
+
+  <p class="body-p">After Matthew finishes each category, the app shows a <strong>session report</strong>. You must screenshot this screen before moving on to the next category. This is the main way Matthew's speech therapist reviews his progress.</p>
+
+  <div class="box box-amber">
+    <div class="box-title">Minimum per week</div>
+    3 sessions × 5 categories = <strong>15 screenshots per week.</strong> Every session, every category — no exceptions. If a screenshot is missing, that category cannot be counted toward his progress goals.
+  </div>
+
+  <p class="body-p">Here is what the session report screen looks like, and what your screenshot must clearly show:</p>
+
+  <!-- Annotated report mock -->
+  <div class="hl-border annotated" style="margin-top:1.25rem;">
+    <div class="hl-label">Screenshot this screen</div>
+    <div class="ui-report">
+      <div class="ui-report-title">Session results — Food &amp; drink · 2 rounds</div>
+
+      <div class="hl-border" style="margin-bottom:0.9rem;">
+        <div class="hl-label">① Capture this</div>
+        <div class="ui-stats">
+          <div class="ui-stat ui-stat-got"><div class="ui-stat-num">5</div><div class="ui-stat-lbl">Got it</div></div>
+          <div class="ui-stat ui-stat-part"><div class="ui-stat-num">1</div><div class="ui-stat-lbl">Nearly</div></div>
+          <div class="ui-stat ui-stat-noyet"><div class="ui-stat-num">1</div><div class="ui-stat-lbl">Keep going</div></div>
+        </div>
+      </div>
+
+      <div class="hl-border" style="margin-bottom:0.9rem;">
+        <div class="hl-label">② Capture this</div>
+        <div class="ui-phrase-row"><span class="ui-phrase-row-text">I want burger and chips</span><span class="ui-phrase-row-att">1 attempt</span><span class="badge badge-got">Got it</span></div>
+        <div class="ui-phrase-row"><span class="ui-phrase-row-text">I want Pepsi Max</span><span class="ui-phrase-row-att">1 attempt</span><span class="badge badge-got">Got it</span></div>
+        <div class="ui-phrase-row"><span class="ui-phrase-row-text">I want lahmacun</span><span class="ui-phrase-row-att">2 attempts</span><span class="badge badge-got">Got it</span></div>
+        <div class="ui-phrase-row"><span class="ui-phrase-row-text">I want pizza</span><span class="ui-phrase-row-att">1 attempt</span><span class="badge badge-got">Got it</span></div>
+        <div class="ui-phrase-row"><span class="ui-phrase-row-text">I want chocolate</span><span class="ui-phrase-row-att">1 attempt</span><span class="badge badge-got">Got it</span></div>
+        <div class="ui-phrase-row"><span class="ui-phrase-row-text">I want a sandwich</span><span class="ui-phrase-row-att">2 attempts</span><span class="badge badge-part">Nearly</span></div>
+        <div class="ui-phrase-row"><span class="ui-phrase-row-text">I want spaghetti</span><span class="ui-phrase-row-att">3 attempts</span><span class="badge badge-noyet">Keep going</span></div>
+      </div>
+
+      <div class="hl-border">
+        <div class="hl-label">③ Capture this</div>
+        <div class="ui-summary-box">
+          <div class="ui-summary-lbl">Session summary</div>
+          Matthew completed a home speech practice session in the food &amp; drink category across 2 rounds. He produced 5 of 7 target phrases accurately by the end of the session, with 1 rated as nearly correct and 1 still requiring support…
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:1.25rem;">
+    <div class="sc-grid">
+      <div class="sc-card">
+        <div class="sc-card-title">① Numbers at the top</div>
+        <div class="sc-card-body">The three coloured boxes showing how many phrases were <em>Got it</em>, <em>Nearly</em>, and <em>Keep going</em>.</div>
+      </div>
+      <div class="sc-card">
+        <div class="sc-card-title">② Phrase list</div>
+        <div class="sc-card-body">The full list of all 7 phrases, each showing its rating badge and number of attempts.</div>
+      </div>
+      <div class="sc-card" style="grid-column: 1 / -1;">
+        <div class="sc-card-title">③ Written summary</div>
+        <div class="sc-card-body">The blue paragraph at the bottom of the screen. Make sure this is not cut off in the screenshot — scroll down if needed before taking the screenshot.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box box-navy" style="margin-top:1rem;">
+    <div class="box-title">Labelling your screenshots</div>
+    After taking each screenshot, rename or label it with the <strong>date and category name</strong> — for example:<br>
+    <code style="font-size:13px; background:#fff; padding:2px 7px; border-radius:5px; margin-top:5px; display:inline-block;">Mon 14 Apr — Food and drink</code><br>
+    <span style="font-size:13px;">This makes it easy for Matthew's speech therapist to organise and review them.</span>
+  </div>
+</div>
+
+<!-- ── SECTION 4: CARER PRESENCE ── -->
+<div class="sec">
+  <div class="sec-title">4 &nbsp;Carer involvement — especially the first two weeks</div>
+
+  <p class="body-p">A parent or carer must be <strong>present for every session during the first two weeks</strong> (at least the first 6 practice sessions). After that, Matthew may work more independently — but you should still be nearby during each session.</p>
+
+  <ol class="steps">
+    <li class="step">
+      <div class="step-n">1</div>
+      <div class="step-body">
+        <strong>Learn how the app works.</strong> The first two weeks are your opportunity to get comfortable with the flow so you can run sessions confidently and help Matthew if he gets stuck. You should understand how to start a category, what each rating means, how to override a rating, and how to take the session screenshot.
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-n">2</div>
+      <div class="step-body">
+        <strong>Make sure Matthew is using the app correctly.</strong> He should be looking at the phrase card and saying the phrase clearly and aloud into the device microphone. Watch for:
+        <ul style="margin-top:6px; padding-left:1.2rem; font-size:13.5px; color:var(--muted); display:flex; flex-direction:column; gap:4px;">
+          <li>Whispering or speaking too quietly</li>
+          <li>Looking away from the screen while speaking</li>
+          <li>Rushing through phrases without reading them</li>
+          <li>The mic picking up background noise or your voice</li>
+        </ul>
+        <div class="note">A quiet room with the TV off gives the best results from the microphone.</div>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-n">3</div>
+      <div class="step-body">
+        <strong>Override the app's rating when it is wrong.</strong> See Section 5 below — this is one of your most important jobs during every session, not just the first two weeks.
+      </div>
+    </li>
+  </ol>
+</div>
+
+<!-- ── SECTION 5: OVERRIDING ── -->
+<div class="sec">
+  <div class="sec-title">5 &nbsp;Overriding the app's rating</div>
+
+  <p class="body-p">The app uses a microphone to judge Matthew's responses automatically — but it is not perfect. It can struggle with Turkish words (like <em>Nene</em>, <em>Teyze</em>, <em>Abi</em>, <em>lahmacun</em>), quiet speech, or background noise. <strong>You know Matthew's speech better than any microphone does.</strong> Trust your ears.</p>
+
+  <table class="override-table">
+    <thead>
+      <tr>
+        <th>Situation</th>
+        <th>What to do</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Matthew said the phrase clearly and correctly, but the app gave <span class="badge badge-part">Nearly</span> or <span class="badge badge-noyet">Keep going</span></td>
+        <td>Tap the <span class="badge badge-got">✓ Got it</span> button to correct it.</td>
+      </tr>
+      <tr>
+        <td>The app gave <span class="badge badge-got">✓ Got it</span> but Matthew's production was unclear, incomplete, or accidental</td>
+        <td>Tap <span class="badge badge-part">Nearly</span> or <span class="badge badge-noyet">Keep going</span> to correct it.</td>
+      </tr>
+      <tr>
+        <td>You realise you need to change the rating of the <em>previous</em> phrase after moving on</td>
+        <td>Tap the <strong>← Go back</strong> button (grey, below the blue Next button) to return to the previous phrase and change its rating.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box box-navy" style="margin-top:1rem;">
+    <div class="box-title">How to override — step by step</div>
+    After Matthew speaks, the three rating buttons are always visible on screen. Simply tap the button that matches what <em>you</em> heard — <span class="badge badge-got">✓ Got it</span>, <span class="badge badge-part">Nearly</span>, or <span class="badge badge-noyet">Keep going</span>. The app updates the rating immediately. Then tap the blue <strong>Next →</strong> button to continue to the next phrase.
+  </div>
+
+</div>
+
+<!-- ── SECTION 6: HOW TO RUN EACH PHRASE ── -->
+<div class="sec">
+  <div class="sec-title">6 &nbsp;How to run each phrase — step by step</div>
+
+  <p class="body-p">Follow this sequence for every phrase in every category. The goal is one clear, recorded attempt per phrase — with one opportunity to practise first if Matthew needs it.</p>
+
+  <ol class="steps">
+    <li class="step">
+      <div class="step-n">1</div>
+      <div class="step-body">
+        <strong>The question is presented on screen and read aloud.</strong> The app will automatically speak the question (e.g. "What do you want to eat?"). You can tap the blue speaker button on the question card at any time to hear it again.
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-n">2</div>
+      <div class="step-body">
+        <strong>Practise the response with Matthew — one time only.</strong> Show Matthew the phrase on screen (e.g. <em>"I want chocolate"</em>) and say it clearly together so he hears how it should sound. This is his one practice opportunity before recording begins.
+        <div class="note">Important: allow only one practice attempt before recording. Matthew may not yet know every phrase — that is completely expected and is exactly what the programme is tracking. It is fine for him to make mistakes. We need to capture those mistakes so that when he improves, the progress is visible in the data.</div>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-n">3</div>
+      <div class="step-body">
+        <strong>Signal that recording is starting.</strong> Say to Matthew: <em>"OK, are you ready? I'm going to ask again — this time I will record."</em>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-n">4</div>
+      <div class="step-body">
+        <strong>Tap the speaker button to repeat the question, then tap the microphone to record.</strong> Tap the blue speaker icon on the question card so Matthew hears the question again. Then tap the large microphone button and let Matthew say the phrase aloud. The app will judge his response automatically.
+      </div>
+    </li>
+    <li class="step">
+      <div class="step-n">5</div>
+      <div class="step-body">
+        <strong>Override the rating if needed, then tap Next.</strong> Check the rating the app gave. If it is wrong, tap the correct button — <span class="badge badge-got">✓ Got it</span>, <span class="badge badge-part">Nearly</span>, or <span class="badge badge-noyet">Keep going</span>. Then tap the blue <strong>Next →</strong> button to move to the following phrase.
+      </div>
+    </li>
+  </ol>
+
+  <div class="box box-amber" style="margin-top:1rem;">
+    <div class="box-title">Known app issue — do not tap the microphone a second time</div>
+    <strong>Once a recording result has appeared, do not tap the microphone button again for the same phrase.</strong> Due to a bug in the app, tapping the microphone a second time will cause it to get stuck in recording mode — the button stays red, no result appears, and the rating buttons become unresponsive.<br><br>
+    If this happens: tap <strong>← Go back</strong>, manually tap the correct rating button for that phrase, then tap <strong>Next →</strong> to move forward. This bypasses the stuck state.<br><br>
+    The safest approach: record each phrase once only. If you are unsure about a result, use the rating buttons to override it rather than re-recording.
+  </div>
+</div>
+
+<!-- ── SECTION 7: TIPS ── -->
+<div class="sec">
+  <div class="sec-title">7 &nbsp;Tips for a good session</div>
+  <ol class="steps">
+    <li class="step">
+      <div class="step-n">💡</div>
+      <div class="step-body"><strong>Find a quiet spot.</strong> Background noise — TV, music, other conversations — confuses the microphone and leads to inaccurate ratings. A quiet room is the single biggest thing you can do to improve accuracy.</div>
+    </li>
+    <li class="step">
+      <div class="step-n">💡</div>
+      <div class="step-body"><strong>Use the speaker button freely.</strong> There is a blue speaker icon on the question card. Tap it to hear the question read aloud at any point — during practice or just before recording.</div>
+    </li>
+    <li class="step">
+      <div class="step-n">💡</div>
+      <div class="step-body"><strong>Keep it positive.</strong> Even <span class="badge badge-noyet">Keep going</span> phrases are progress — Matthew is attempting them, which is exactly the goal. Celebrate effort as much as accuracy.</div>
+    </li>
+    <li class="step">
+      <div class="step-n">💡</div>
+      <div class="step-body"><strong>There is no time limit.</strong> Matthew can take as long as he needs to look at the phrase and prepare before speaking. Do not rush him.</div>
+    </li>
+  </ol>
+</div>
+
+<hr>
+
+<!-- ── CHECKLIST ── -->
+<div class="sec">
+  <div class="sec-title">Quick reference — session checklist</div>
+
+  <div class="box box-navy">
+    <div class="box-title">Before you start</div>
+    <ul class="checklist">
+      <li><div class="check-box"></div> Find a quiet room — TV and music off</li>
+      <li><div class="check-box"></div> Matthew is comfortable and ready</li>
+      <li><div class="check-box"></div> Device volume is up so Matthew can hear questions read aloud</li>
+    </ul>
+  </div>
+
+  <div class="box box-green" style="margin-top:0.75rem;">
+    <div class="box-title">During the session (for each category)</div>
+    <ul class="checklist">
+      <li><div class="check-box"></div> Matthew looks at the phrase card and says it aloud</li>
+      <li><div class="check-box"></div> Encourage the retry round for phrases not yet achieved</li>
+      <li><div class="check-box"></div> Wait for the session report screen to appear</li>
+      <li><div class="check-box"></div> One practice attempt with Matthew, then record once (see Section 6)</li>
+      <li><div class="check-box"></div> Override the rating if the app got it wrong, then tap Next</li>
+      <li><div class="check-box"></div> After all 7 phrases: take a screenshot showing all three sections (numbers, phrase list, and written summary)</li>
+      <li><div class="check-box"></div> Label the screenshot with today's date and category name</li>
+    </ul>
+  </div>
+
+  <div class="box box-amber" style="margin-top:0.75rem;">
+    <div class="box-title">After the full session</div>
+    <ul class="checklist">
+      <li><div class="check-box"></div> You have 5 screenshots — one for each category</li>
+      <li><div class="check-box"></div> All screenshots show the numbers, phrase list, and written summary</li>
+      <li><div class="check-box"></div> Screenshots are saved and labelled</li>
+      <li><div class="check-box"></div> Send or share screenshots as agreed with Matthew's speech therapist</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- /body -->
+
+<div class="foot">
+  <span>Matthew's home practice programme — parent &amp; carer guide</span>
+  <span>Prepared by Matthew's speech therapist</span>
+</div>
+
+</div><!-- /page -->
+</body>
+</html>
